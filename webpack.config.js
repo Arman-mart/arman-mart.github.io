@@ -1,7 +1,17 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
-  entry: "./src/index.ts",
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    port: 9000,
+    historyApiFallback:true,
+    hot:true
+  },
+
+  entry: "./src/app/app.ts",
   mode: "development",
   module: {
     rules: [

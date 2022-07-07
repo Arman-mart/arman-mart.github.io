@@ -3,20 +3,25 @@
     padding: 0;
 }
 
-body{
-    background-color: #D9F2B4;
+
+#header_container,
+#footer_container
+{
+  min-height: 200px;
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+
 }
 
-header{
-    width: 100%;
-    height: 200px;
-    background-color: #B4EBCA;
-    margin-bottom: 140px;
+#page_container{
+    min-height: calc(100vh - 80px);
 }
 
-#main-page{
+#page_container{
     width: 100%;
-	height: 50px;
 	text-align: center;
 	display: flex;
 	justify-content: center;
@@ -25,15 +30,13 @@ header{
 	letter-spacing: 5px;
 	font-weight: 900;
     flex-wrap: wrap;
-
 }
 
 .card-item{
-    /* padding: 15px 25px; */
 	width: 25%;
     cursor: pointer;
     border: 2px solid white;
-
+    margin: 18px;
 }
 
 .card-item > img {
@@ -48,8 +51,8 @@ header{
 }
 
 .card-item img{
-    width: 240px;
-	height: 240px;
+    width: 280px;
+	height: 280px;
 	margin-bottom: 5px;
     transition: .3s all;
 }
