@@ -1,14 +1,14 @@
-const Error404 = {
+import Header from "./header";
+import { viewElements } from "../tools/helpers";
 
+const Error404 = {
     render : async () => {
+        viewElements.header.innerHTML =  await Header.redner('Error 404 ','Page Not Found');
         const content = `
-            <section class="section">
-                <h1> 404 Error </h1>
-            </section>
+            <section class="section"> </section>
         `
         return content
     }
-    , after_render: async () => {
-    }
+   
 }
 export default Error404;

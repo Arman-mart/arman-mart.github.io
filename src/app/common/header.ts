@@ -1,13 +1,12 @@
 const Header = {
-    redner: async () : Promise<string> => {
+    redner: async ( pageTitle:string, title:string) : Promise<string> => {
         const content = `
-            <h1>Header</h1>
-            <h2>title</h2>
+            <h1>${pageTitle}</h1>
+            <h2>${title}</h2>
         `
         return content;
     },
 
-    afterRender : async () => {}
 }
 
 export default Header

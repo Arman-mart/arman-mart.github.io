@@ -1,11 +1,38 @@
-const Second = {
-    render: async (): Promise <string> => {
-        const posts = null;
-        const content = `
-            <div>Second Page</div>
-        `
-        return content
-    },
+import Header           from "../common/header";
+import { iPage }        from "../tools/types";
+import { iMathc }       from "../tools/types";
+import { viewElements } from "../tools/helpers";
+
+
+const getBreedList = async () => {
+    const url = window.location.pathname;
+    console.log(url);
+    // const response = await fetch(`https://dog.ceo/api/breed/${}/${dogSubBreedName}/images/random`)
 }
 
-export default Second
+const Second: iPage = {
+
+   getParams: (match: iMathc ) => {
+    const values = match.result.slice(1);
+    const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(result => result[1]);
+
+    return Object.fromEntries(keys.map((key, i) => {
+        return [key, values[i]];
+    }));
+},
+
+
+  render: async () => {
+    viewElements.header.innerHTML =  await Header.redner('Second page', 'Random sub-breed images');
+    getBreedList();
+    const posts = null;
+    const content = `
+            <div>
+                
+            </div>
+        `;
+    return content;
+  },
+};
+
+export default Second;

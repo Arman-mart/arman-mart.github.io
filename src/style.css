@@ -35,7 +35,7 @@
 .card-item{
 	width: 25%;
     cursor: pointer;
-    border: 2px solid white;
+    border: 2px solid #1abc9c;
     margin: 18px;
 }
 
