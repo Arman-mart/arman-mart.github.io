@@ -30,9 +30,6 @@ const getBreedList = async () => {
 };
 
 
-const dogs = document.querySelectorAll('.card-inner');
-console.log(dogs)
-
 
 const Main: iPage = {
      getParams: (match: iMathc ) => {

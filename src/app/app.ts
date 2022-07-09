@@ -1,17 +1,17 @@
-import                   '../../src/style.css'
-import Footer           from './common/footer'
-import { routes }       from './tools/helpers'
+import '../../src/style.css'
+import Footer from './common/footer'
+import { routes } from './tools/helpers'
 import { viewElements } from './tools/helpers'
 
-const pathToRegex = (path:string) => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
+const pathToRegex = (path: string) => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
-const navigateTo = (url:string) => {
+const navigateTo = (url: string) => {
     history.pushState(null, url);
     router();
 };
 
 
-const router = async () => {  
+const router = async () => {
     viewElements.footer.innerHTML = await Footer.render();
     console.log(routes)
 
@@ -31,17 +31,26 @@ const router = async () => {
     }
 
     viewElements.content.innerHTML = await match.route.view.render();
-    const dogs = document.querySelectorAll('.card-inner');
-    console.log(dogs);
-
-    dogs.forEach(element => {
-        element.addEventListener('click', e => {
-            const el = e.currentTarget as HTMLElement;
-            console.log(el.childNodes)
-        })
-    });
-
+    goToNext();
 }
 
+const goToNext = () => {
+    const dogs = document.querySelectorAll('.card-inner');
+    console.log(dogs);
+    dogs.forEach(element => {
+        element.addEventListener('click', e => {
+            const element = e.currentTarget as HTMLDivElement;
+            const textEl = element.children[1] as HTMLHeadElement;
+            const text = textEl.innerText;
+            location.pathname += text;
+            router()
+        })
+    });
+}
+
+
+
+
+
 // window.addEventListener('popstate', router);
-router();
+router();  
