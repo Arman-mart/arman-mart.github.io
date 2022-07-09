@@ -29,8 +29,12 @@ const getBreedList = async () => {
     });
 };
 
-const Main: iPage = {
 
+const dogs = document.querySelectorAll('.card-inner');
+console.log(dogs)
+
+
+const Main: iPage = {
      getParams: (match: iMathc ) => {
         const values = match.result.slice(1);
         const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(result => result[1]);
@@ -65,5 +69,8 @@ const Main: iPage = {
     return content;
   },
 };
+
+
+
 
 export default Main;

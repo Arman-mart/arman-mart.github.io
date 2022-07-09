@@ -4,9 +4,7 @@ import { iMathc }       from "../tools/types";
 import { viewElements } from "../tools/helpers";
 
 
-const getBreedList = async () => {
-    const url = window.location.pathname;
-    console.log(url);
+const getSubBreedList = async () => {
     // const response = await fetch(`https://dog.ceo/api/breed/${}/${dogSubBreedName}/images/random`)
 }
 
@@ -24,8 +22,7 @@ const Second: iPage = {
 
   render: async () => {
     viewElements.header.innerHTML =  await Header.redner('Second page', 'Random sub-breed images');
-    getBreedList();
-    const posts = null;
+    const posts = await getSubBreedList();
     const content = `
             <div>
                 

@@ -31,6 +31,15 @@ const router = async () => {
     }
 
     viewElements.content.innerHTML = await match.route.view.render();
+    const dogs = document.querySelectorAll('.card-inner');
+    console.log(dogs);
+
+    dogs.forEach(element => {
+        element.addEventListener('click', e => {
+            const el = e.currentTarget as HTMLElement;
+            console.log(el.childNodes)
+        })
+    });
 
 }
 
