@@ -3,8 +3,7 @@ import Header           from "../common/header";
 import { iMathc }       from "../tools/types";
 import { viewElements } from "../tools/helpers";
 
-const Third: iPage = {
-
+const SubTypeRandom: iPage = {
    getParams : (match: iMathc ) => {
     const values = match.result.slice(1);
     const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(result => result[1]);
@@ -15,7 +14,7 @@ const Third: iPage = {
   },
 
   render: async () => {
-    viewElements.header.innerHTML =  await Header.redner('Third Page', 'Random Dogs');
+    viewElements.header.innerHTML =  await Header.render('Third Page', 'Random Dogs');
     const content = `
             <div>Third Page</div>
         `;
@@ -24,5 +23,5 @@ const Third: iPage = {
 };
 
 
-export default Third;
+export default SubTypeRandom;
 

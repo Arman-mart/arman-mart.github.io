@@ -1,12 +1,13 @@
 import Main         from "../pages/mainPage"
-import Second       from "../pages/secondPage"
-import Third        from "../pages/thirdPage"
+import Subtypes       from "../pages/subtypes"
+import SubTypeRandom        from "../pages/subTypeRandom"
 import Error404     from '../common/errorPage';
 import { iRoutes }  from "./types";
 
 const ROUTES = {
     list: {
         path: '/',
+        
     },
     notFound: {
         path: '/404',
@@ -41,15 +42,11 @@ export const routes: iRoutes[] = [
          view: Main},
     {
         path: ROUTES.subTypes.path,
-         view: Second
+         view: Subtypes
     },
     {
         path: ROUTES.subTypeRandom.path,
-        view: Third
-    },
-    {
-        path: '/404',
-         view: Error404
+        view: SubTypeRandom
     },
 ];
 
@@ -58,3 +55,8 @@ export const viewElements: {[key:string]:HTMLElement} =  {
      content: document.getElementById('page_container') as HTMLElement,
      footer : document.getElementById('footer_container') as HTMLElement,
 }
+
+export const navigateTo = (url: string) => {
+    history.pushState(null,'', url);
+    window.dispatchEvent(new Event('popstate'));
+};

@@ -3,7 +3,7 @@ import { viewElements } from "../tools/helpers";
 
 const Error404 = {
     render : async () => {
-        viewElements.header.innerHTML =  await Header.redner('Error 404 ','Page Not Found');
+        viewElements.header.innerHTML =  await Header.render('Error 404 ','Page Not Found');
         const content = `
             <section class="section"> </section>
         `
@@ -12,3 +12,4 @@ const Error404 = {
    
 }
 export default Error404;
+

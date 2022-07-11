@@ -1,11 +1,12 @@
 export interface iPage  {
     getParams?:  (match:any) => any;
-    render: () => Promise<string>
+    render: () => Promise<string>;
+    initDomEvents?: Function;
 }
 
 export interface IListOfAllResponse {
     message: {
-      [key: string]: string;
+      [key: string]: string[];
     };
   }
 
