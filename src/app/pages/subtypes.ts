@@ -51,7 +51,8 @@ const Subtypes: iPage = {
             ` <span class='type'>
                         ${type}
                 </span>             
-              Sub-breeds `
+              Sub-breeds
+              `
         );
 
         const posts = await getSubBreedList(type);
@@ -67,7 +68,7 @@ const Subtypes: iPage = {
               </div>
           </div>
       `;
-        }, '');
+        },'<div class="row">');
         return content;
     },
 };

@@ -38,7 +38,7 @@ const subTypeImages: iPage = {
               </div>
           </div>
       `;
-      }, '');
+      },'<div class="row">');
 
       return content;
   }
