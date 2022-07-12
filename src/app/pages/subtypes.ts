@@ -1,9 +1,9 @@
 import Header from "../common/header";
-import { iPage } from "../tools/types";
+import { iPage, iParams } from "../tools/types";
 import { navigateTo, viewElements } from "../tools/helpers";
 import { getBreedList } from "./mainPage";
 
-const getSubBreedList = async (type:any, subtype:any) => {
+const getSubBreedList = async (type:string) => {
   const list = await getBreedList();
   const subBreeds = list.filter((element) => {
     return element.subBreed.length !== 0 && element.nameOfBreed === type;
@@ -31,10 +31,9 @@ const getSubBreedList = async (type:any, subtype:any) => {
 };
 
 const Subtypes: iPage = {
-  async initDomEvents(params:any) {
+  async initDomEvents(params:iParams) {
     const type  =  params.type;
-    const subtype =  params.subtype
-    const subList = await getSubBreedList(type,subtype);
+    const subList = await getSubBreedList(type);
     const dogs = document.querySelectorAll(".card-item");
     dogs.forEach((element, idx) => {
       element.addEventListener("click", (e) => {
@@ -44,14 +43,14 @@ const Subtypes: iPage = {
     });
   },
 
-  render: async (params) => {
+  render: async (params:iParams) => {
     const type  = params.type;
     const subtype = params.subtype
     viewElements.header.innerHTML = await Header.render(
       `Second page`,
       ` <span class='type'>${type}</span>  Sub-breeds `
     );
-    const posts = await getSubBreedList(type,subtype);
+    const posts = await getSubBreedList(type);
     const content = posts.reduce((acc, el) => {
       return `
           ${acc}

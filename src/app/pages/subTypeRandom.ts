@@ -1,10 +1,10 @@
-import { iPage } from "../tools/types";
+import { iPage, iParams } from "../tools/types";
 import Header from "../common/header";
 import { viewElements } from "../tools/helpers";
 
 
 
-const getRandomImages = async (type:any, subType:any) => {
+const getRandomImages = async (type:string, subType:string) => {
   try {
         const response = await fetch(
           `https://dog.ceo/api/breed/${type}/${subType}/images/random/20`
@@ -19,7 +19,7 @@ const getRandomImages = async (type:any, subType:any) => {
 };
 
 const SubTypeRandom: iPage = {
-  render: async (params) => {
+  render: async (params:iParams) => {
   const type = params.type;
   const subtype = params.subtype;
 
