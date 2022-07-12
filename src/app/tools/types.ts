@@ -1,6 +1,6 @@
 export interface iPage  {
     getParams?:  (match:any) => any;
-    render: () => Promise<string>;
+    render: (params?:any) => Promise<string>;
     initDomEvents?: Function;
 }
 
@@ -12,9 +12,8 @@ export interface IListOfAllResponse {
 
 
 export interface iMathc {
-    
-    route: iRoutes,
-    result:string;
+  route: iRoutes;
+  result: RegExpMatchArray | null
 }
 
 export interface iRoutes {

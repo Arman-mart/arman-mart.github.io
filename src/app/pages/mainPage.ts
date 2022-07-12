@@ -9,7 +9,6 @@ export const getBreedList = async () => {
   const response = await fetch("https://dog.ceo/api/breeds/list/all");
   const data: IListOfAllResponse = await response.json();
   const { message } = data;
-  console.log(message)
   const nameOfBreed = Object.keys(message);
   const dogArray = nameOfBreed.map((nameOfBreed) => {
     return fetch(`https://dog.ceo/api/breed/${nameOfBreed}/images/random`);
@@ -33,22 +32,18 @@ export const getBreedList = async () => {
 
 
 const Main: iPage = {
-  getParams: (match: iMathc ) => {
-    const values = match.result.slice(1);
-    const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(result => result[1]);
-
-    return Object.fromEntries(keys.map((key, i) => {
-        return [key, values[i]];
-    }));
-  },
-
-  initDomEvents() {
+  async initDomEvents() {
+    const list = await getBreedList();
     const dogs = document.querySelectorAll('.card-item');
-    dogs.forEach(element => {
+    dogs.forEach((element, idx) => {
         element.addEventListener('click', e => {
           const dog = e.currentTarget as HTMLElement
           const text = dog.getAttribute('data-name');
-          navigateTo(`/types/${text}`);
+          if(list[idx].subBreed.length !== 0){
+            navigateTo(`/types/${text}`);
+          }else{
+            navigateTo(`/random/${text}`);
+          }
         })
     });
   },

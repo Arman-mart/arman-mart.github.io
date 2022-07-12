@@ -1,8 +1,9 @@
-import Main         from "../pages/mainPage"
+import Main           from "../pages/mainPage"
 import Subtypes       from "../pages/subtypes"
-import SubTypeRandom        from "../pages/subTypeRandom"
-import Error404     from '../common/errorPage';
-import { iRoutes }  from "./types";
+import SubTypeRandom  from "../pages/subTypeRandom"
+import subTypeImages from "../pages/subTypeimages";
+import Error404       from '../common/errorPage';
+import { iRoutes }    from "./types";
 
 const ROUTES = {
     list: {
@@ -14,21 +15,13 @@ const ROUTES = {
     },
     subTypes: {
         path: '/types/:type',
-        getFullPath: function(type: string) {
-            this.path.replace(':type', type);
-        }
     },
     typeRandom: {
         path: '/random/:type',
-        getFullPath: function(type: string) {
-            this.path.replace(':type', type);
-        }
     },
     subTypeRandom: {
-        path: '/random/:type/:sub-type',
-        getFullPath: function(type: string, subType: string) {
-            this.path.replace(':type', type).replace(':sub-type', subType);
-        }
+        path: '/random/:type/:subtype',
+
     },
 }
 
@@ -44,9 +37,15 @@ export const routes: iRoutes[] = [
         path: ROUTES.subTypes.path,
          view: Subtypes
     },
+
     {
         path: ROUTES.subTypeRandom.path,
         view: SubTypeRandom
+    },
+
+    {
+        path: ROUTES.typeRandom.path,
+        view: subTypeImages
     },
 ];
 

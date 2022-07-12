@@ -1,53 +1,71 @@
 import Header from "../common/header";
 import { iPage } from "../tools/types";
-import { iMathc } from "../tools/types";
 import { navigateTo, viewElements } from "../tools/helpers";
 import { getBreedList } from "./mainPage";
 
-const getSubBreedList = async () => {
+const getSubBreedList = async (type?:any, subtype?:any) => {
   const list = await getBreedList();
-  const dogType = location.pathname.substring(
-    location.pathname.lastIndexOf("/") + 1
-  );
-  const subBreeds = list.map((el) => {
-    console.log(el);
-    if (el.subBreed.length !== 0 && dogType == el.nameOfBreed) {
-      const types = el.subBreed;
-      return types.forEach((element: any) => {
-        return fetch(
-          `https://dog.ceo/api/breed/${el.nameOfBreed}/${element}/images/random`
-        );
-      });
-    }
+  const subBreeds = list.filter((element) => {
+    return element.subBreed.length !== 0 && element.nameOfBreed === type;
   });
-  return subBreeds;
+
+  console.log(subBreeds);
+
+  const test = subBreeds[0].subBreed.map((el) => {
+    return fetch(`https://dog.ceo/api/breed/${type}/${el}/images/random`);
+  });
+
+  return Promise.all(test)
+    .then((values) => {
+      return Promise.all(values.map((value) => value.json()));
+    })
+    .then((data) => {
+      return data.map((value, idx) => {
+        return {
+          url: value,
+          nameOfSubBreed: subBreeds[0].subBreed[idx],
+          nameOfBreed: subBreeds[0].nameOfBreed
+        };
+      });
+    });
 };
 
 const Subtypes: iPage = {
-  getParams: (match: iMathc) => {
-    const values = match.result.slice(1);
-    const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(
-      (result) => result[1]
-    );
-
-    return Object.fromEntries(
-      keys.map((key, i) => {
-        return [key, values[i]];
-      })
-    );
+  async initDomEvents(params:any) {
+    const type  =  params.type;
+    const subtype =  params.subtype
+    const subList = await getSubBreedList(type,subtype);
+    const dogs = document.querySelectorAll(".card-item");
+    dogs.forEach((element, idx) => {
+      element.addEventListener("click", (e) => {
+        const dog = e.currentTarget as HTMLElement;
+        const SubBreed = dog.getAttribute("data-name");
+        navigateTo(`/random/${type}/${subList[idx].nameOfSubBreed}`);
+      });
+    });
   },
 
-  render: async () => {
+  render: async (params) => {
+    const type  = params.type;
+    const subtype = params.subtype
     viewElements.header.innerHTML = await Header.render(
       "Second page",
       "Random sub-breed images"
     );
-    const posts = await getSubBreedList();
-    console.log(posts);
-    const content = `
-            <div>
-            </div>
-        `;
+    const posts = await getSubBreedList(type,subtype);
+    const content = posts.reduce((acc, el) => {
+      return `
+          ${acc}
+          <div class="card-item" data-name="${el.nameOfBreed}">
+              <div class="card-inner">
+                  <img src="${el.url.message}">
+                  <div class="breed-name">
+                      <h3>${el.nameOfSubBreed}</h3>
+                  </div>
+              </div>
+          </div>
+      `;
+    }, '');
     return content;
   },
 };

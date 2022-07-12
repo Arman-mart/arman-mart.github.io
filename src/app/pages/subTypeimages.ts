@@ -1,15 +1,11 @@
-import { iPage } from "../tools/types";
-import Header from "../common/header";
-import { iMathc } from "../tools/types";
+import { iPage }        from "../tools/types";
+import Header           from "../common/header";
 import { viewElements } from "../tools/helpers";
-import Subtypes from './subtypes';
 
-
-
-const getRandomImages = async (type:any, subType:any) => {
+const getRandomImages = async (type:any, subtype:any) => {
   try {
         const response = await fetch(
-          `https://dog.ceo/api/breed/${type}/${subType}/images/random/20`
+          `https://dog.ceo/api/breed/${type}/images/random/20`
         );
         const data = await response.json();
         const { message } = data;
@@ -17,34 +13,34 @@ const getRandomImages = async (type:any, subType:any) => {
   }
   catch (e) {
         console.log(e);
-  }
+    }
 };
 
-const SubTypeRandom: iPage = {
+const subTypeImages: iPage = {
   render: async (params) => {
-  const type = params.type;
-  const subtype = params.subtype;
+    const type = params.type;
+    const subtype = params.subtype;
 
     viewElements.header.innerHTML = await Header.render(
       "Third Page",
       `Random images of`
     );
-      const images = await getRandomImages(type, subtype);
+   
+    const images = await getRandomImages(type,subtype);
+  
       const content = images.reduce((acc:string, el:string) => {
         return `
             ${acc}
-            <div class="card-item" data-name='${type}' >
+            <div class="card-item" >
                 <div class="card-inner">
                     <img src="${el}">
-                    <div class="breed-name">
-                    </div>
                 </div>
             </div>
         `;
       }, '');
 
       return content;
-  },
-};
+    }
+  };
 
-export default SubTypeRandom;
+export default subTypeImages;
