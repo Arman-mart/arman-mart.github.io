@@ -31,7 +31,7 @@ const router = async () => {
             result: [location.pathname]
         };
     }
-    console.log(match, 111);
+    
     const params: iParams = getParams(match);
     viewElements.content.innerHTML = await match.route.view.render(params);
     viewElements.footer.innerHTML = await Footer.render(params);
