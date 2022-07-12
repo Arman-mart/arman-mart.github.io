@@ -1,40 +1,36 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     height: 100vh;
     background: #2F3238;
 }
 
-
 #header_container,
-#footer_container
-{
-  min-height: 200px;
-  padding: 60px;
-  text-align: center;
-  background: #1abc9c;
-  color: white;
-  font-size: 30px;
-
+#footer_container {
+    min-height: 200px;
+    padding: 60px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 30px;
 }
 
-
-#page_container{
+#page_container {
     margin: 30px;
 }
 
-.row{
+.row {
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.card-inner{
+.card-inner {
     position: relative;
     flex: 1;
     max-width: 460px;
@@ -44,7 +40,7 @@ body{
     cursor: pointer;
 }
 
-.card-inner > img{
+.card-inner>img {
     position: relative;
     vertical-align: top;
     transition: 0.6s;
@@ -52,21 +48,19 @@ body{
     height: 320px;
 }
 
-.card-inner > img:hover{
+.card-inner>img:hover {
     transform: scale(1.2);
 }
 
-
-.card-inner  .breed-name h3{
+.card-inner .breed-name h3 {
     text-align: center;
     font-size: 35px;
     text-transform: uppercase;
     font-weight: 300;
     margin-top: 10px;
-} 
+}
 
-
-.breed-name{
+.breed-name {
     position: absolute;
     background: rgba(255, 255, 255, 0.8);
     width: 100%;
@@ -74,20 +68,19 @@ body{
     bottom: 0;
 }
 
-.type{
+.type {
     color: black;
 }
 
-
-@media(max-width:1080px){
-    .card-inner{
+@media(max-width:1080px) {
+    .card-inner {
         flex: 100%;
         max-width: 480px;
     }
 }
 
-@media(max-width:400px){
-    .card-inner .breed-name h3{
+@media(max-width:400px) {
+    .card-inner .breed-name h3 {
         font-size: 16px;
     }
 }
