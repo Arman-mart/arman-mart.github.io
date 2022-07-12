@@ -1,8 +1,6 @@
 import { iPage } from "../tools/types";
 import Header from "../common/header";
-import { iMathc } from "../tools/types";
 import { viewElements } from "../tools/helpers";
-import Subtypes from './subtypes';
 
 
 
@@ -27,7 +25,7 @@ const SubTypeRandom: iPage = {
 
     viewElements.header.innerHTML = await Header.render(
       "Third Page",
-      `Random images of`
+      ` Random images of  <span class='type'> ${type} / ${subtype}</span>`
     );
       const images = await getRandomImages(type, subtype);
       const content = images.reduce((acc:string, el:string) => {

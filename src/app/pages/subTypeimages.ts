@@ -23,7 +23,7 @@ const subTypeImages: iPage = {
 
     viewElements.header.innerHTML = await Header.render(
       "Third Page",
-      `Random images of`
+      `Random images of  <span class='type'>${type}</span>`
     );
    
     const images = await getRandomImages(type,subtype);

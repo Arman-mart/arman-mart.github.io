@@ -1,7 +1,6 @@
 import Footer           from './common/footer'
 import { routes }       from './tools/helpers'
 import { viewElements } from './tools/helpers'
-import { iMathc } from './tools/types'
 import '../../src/style.css'
 
 const pathToRegex = (path: string) => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");

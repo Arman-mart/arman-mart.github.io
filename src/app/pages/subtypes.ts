@@ -3,7 +3,7 @@ import { iPage } from "../tools/types";
 import { navigateTo, viewElements } from "../tools/helpers";
 import { getBreedList } from "./mainPage";
 
-const getSubBreedList = async (type?:any, subtype?:any) => {
+const getSubBreedList = async (type:any, subtype:any) => {
   const list = await getBreedList();
   const subBreeds = list.filter((element) => {
     return element.subBreed.length !== 0 && element.nameOfBreed === type;
@@ -39,7 +39,6 @@ const Subtypes: iPage = {
     dogs.forEach((element, idx) => {
       element.addEventListener("click", (e) => {
         const dog = e.currentTarget as HTMLElement;
-        const SubBreed = dog.getAttribute("data-name");
         navigateTo(`/random/${type}/${subList[idx].nameOfSubBreed}`);
       });
     });
@@ -49,8 +48,8 @@ const Subtypes: iPage = {
     const type  = params.type;
     const subtype = params.subtype
     viewElements.header.innerHTML = await Header.render(
-      "Second page",
-      "Random sub-breed images"
+      `Second page`,
+      ` <span class='type'>${type}</span>  Sub-breeds `
     );
     const posts = await getSubBreedList(type,subtype);
     const content = posts.reduce((acc, el) => {
