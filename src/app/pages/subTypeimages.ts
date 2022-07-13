@@ -1,6 +1,7 @@
 import { iPage,iParams } from "../tools/types";
 import Header            from "../common/header";
 import { viewElements }  from "../tools/helpers";
+import { navigateTo }    from "../tools/helpers";
 
 const getRandomImages = async (type: string) => {
   try {
@@ -23,9 +24,17 @@ const subTypeImages: iPage = {
       const type = params.type;
 
       viewElements.header.innerHTML = await Header.render(
-          "Third Page",
           `Random images of  <span class='type'>${type}</span>`
       );
+
+      const btn = document.createElement('button');
+      btn.innerText = 'All list'
+      btn.classList.add('all-dogs-btn', 'btn');
+      viewElements.header.append(btn);
+
+      btn.addEventListener('click', () => {
+          navigateTo('/');
+      })
 
       const images = await getRandomImages(type);
 

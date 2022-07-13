@@ -1,4 +1,4 @@
-import Header                       from "../common/header";
+import Header from '../common/header';
 import { iPage,iParams }            from "../tools/types";
 import { navigateTo, viewElements } from "../tools/helpers";
 import { getBreedList }             from "./mainPage";
@@ -47,13 +47,21 @@ const Subtypes: iPage = {
     render: async (params: iParams) => {
         const type = params.type;
         viewElements.header.innerHTML = await Header.render(
-            `Second page`,
             ` <span class='type'>
                         ${type}
-                </span>             
-              Sub-breeds
+                </span>
+              sub-breeds
               `
         );
+
+        const btn = document.createElement('button');
+        btn.innerText = 'All list'
+        btn.classList.add('all-dogs-btn', 'btn');
+        viewElements.header.append(btn);
+
+        btn.addEventListener('click', e => {
+            navigateTo('/');
+        })
 
         const posts = await getSubBreedList(type);
         const content = posts.reduce((acc, el) => {

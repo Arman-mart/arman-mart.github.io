@@ -51,8 +51,7 @@ const Main: iPage = {
 
     render: async () => {
         viewElements.header.innerHTML = await Header.render(
-            "Main Page",
-            "All Dogs"
+            "List of all Dogs"
         );
         const posts = await getBreedList();
         const content = posts.reduce((acc, el) => {
