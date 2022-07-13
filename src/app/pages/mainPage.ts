@@ -54,7 +54,7 @@ const Main: iPage = {
             "List of all Dogs"
         );
         const posts = await getBreedList();
-        const content = posts.reduce((acc, el) => {
+        const content =  posts.reduce((acc, el) => {
             return (`
           ${acc}
           <div class="card-item" data-name="${el.nameOfBreed}">

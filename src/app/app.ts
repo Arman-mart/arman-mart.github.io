@@ -33,6 +33,9 @@ const router = async () => {
     }
     
     const params: iParams = getParams(match);
+    
+    let load = `<div class='loader'> </div>`
+    viewElements.content.innerHTML = load;
     viewElements.content.innerHTML = await match.route.view.render(params);
     viewElements.footer.innerHTML = await Footer.render(params);
 
