@@ -8,7 +8,7 @@ export interface IListOfAllResponse {
   message: {
       [key: string]: string[];
   };
-}
+};
 
 
 export interface iParams {

@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const merge = require('merge');
 const productionConfig = merge([
   {
     output: {
@@ -8,15 +9,13 @@ const productionConfig = merge([
 
 
       // Tweak this to match your GitHub project name
-      publicPath: "/arman-mart/",
+      publicPath: "/arman-mart.github.io/",
 
     },
   },
 ]);
 
 module.exports = {
-  
-
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
