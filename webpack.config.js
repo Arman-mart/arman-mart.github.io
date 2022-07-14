@@ -1,19 +1,6 @@
 const path = require("path");
-const merge = require('merge');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const productionConfig = merge([
-  {
-    output: {
 
-      publicPath: "/",
-
-
-      // Tweak this to match your GitHub project name
-      publicPath: "/arman-mart.github.io/dist",
-
-    },
-  },
-]);
 
 module.exports = {
   devServer: {
