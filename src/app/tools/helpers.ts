@@ -12,7 +12,7 @@ const ROUTES = {
     },
     notFound: {
         path: '/404',
-    },
+    }, 
     subTypes: {
         path: '/types/:type',
     },
